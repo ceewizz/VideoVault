@@ -1,7 +1,19 @@
+// withAuth method ready to be added to routes that should be protected
+const withAuth = require('../utils/auth');
+
 const router = require('express').Router();
 
 // Get home page
 router.get('/', async (req, res) => {
+    try {
+      res.render('initial' , { layout: 'landing' });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+});
+
+// Get home page
+router.get('/home', async (req, res) => {
     try {
       console.log("HomeRoutes working");
       res.render('home');
@@ -50,6 +62,24 @@ router.get('/openfolder', async (req, res) => {
 router.get('/openitem', async (req, res) => {
     try {
       res.render('playscreen');
+    } catch (err) {
+      res.status(500).json(err);
+    }
+});
+
+// Login
+router.get('/login', async (req, res) => {
+    try {
+      res.render('login', { layout: 'landing' });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+});
+
+// signup
+router.get('/signup', async (req, res) => {
+    try {
+      res.render('signup', { layout: 'landing' });
     } catch (err) {
       res.status(500).json(err);
     }
