@@ -28,6 +28,15 @@ router.get('/upload', async (req, res) => {
     }
 });
 
+// Get search page
+router.get('/search', async (req, res) => {
+    try {
+      res.render('search');
+    } catch (err) {
+      res.status(500).json(err);
+    }
+});
+
 // Get one folder
 router.get('/openfolder', async (req, res) => {
     try {
