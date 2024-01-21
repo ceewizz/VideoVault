@@ -30,6 +30,11 @@ User.init({
     type: DataTypes.STRING,
     allowNull: false
   }
-}, { sequelize, modelName: 'User' });
+}, { 
+  sequelize,
+  timestamps: false,
+  freezeTableName: true,
+  underscored: true, 
+  modelName: 'User' });
 
 module.exports = User;

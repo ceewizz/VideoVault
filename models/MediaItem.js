@@ -35,7 +35,19 @@ MediaItem.init({
       model: 'users', 
       key: 'id'
     }
+  },
+  platformId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'platform',
+      key: 'id'
+    }
   }
-}, { sequelize, modelName: 'mediaItem' });
+}, { 
+  sequelize,
+  timestamps: false,
+  freezeTableName: true,
+  underscored: true, 
+  modelName: 'mediaItem' });
 
 module.exports = MediaItem;

@@ -16,6 +16,11 @@ Platform.init({
     allowNull: false,
     unique: true
   }
-}, { sequelize, modelName: 'platform' });
+}, { 
+  sequelize,
+  timestamps: false,
+  freezeTableName: true,
+  underscored: true, 
+  modelName: 'platform' });
 
 module.exports = Platform;
