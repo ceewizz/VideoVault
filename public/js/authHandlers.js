@@ -1,42 +1,61 @@
 // Login
 const loginFormHandler = async (event) => {
     event.preventDefault();
-    const email = document.querySelector('#email').value.trim();
+    const username = document.querySelector('#username').value.trim();
     const password = document.querySelector('#password').value.trim();
 
-    if (!email || !password) {
+    if (!username || !password) {
         document.getElementById('error-message').textContent = 'Empty field. Please check your input.';
         showModal();
         return;
     }
 
-    if (email && password) {
-        // const response = await fetch('/api/users/login', {
-        //     method: 'POST',
-        //     body: JSON.stringify({ email, password }),
-        //     headers: { 'Content-Type': 'application/json' },
-        // });
+    if (username && password) {
+        const response = await fetch('/api/users/login', {
+            method: 'POST',
+            body: JSON.stringify({ username, password }),
+            headers: { 'Content-Type': 'application/json' },
+        });
 
-        // if (response.ok) {
-        //     // If successful, redirect the browser to the profile page
-        //     document.location.replace('/home');
-        // } else {
-        //     alert(response.statusText);
-        // }
-        document.location.replace('/home');
+        if (response.ok) {
+            document.location.replace('/home');
+        } else {
+            console.log('Something went wrong');
+        }
     }
 };
 // Sign up
-const signupFormHandler = (event) => {
+const signupFormHandler = async (event) => {
     event.preventDefault();
     const username = document.querySelector('#username').value.trim();
     const email = document.querySelector('#email').value.trim();
     const password = document.querySelector('#password').value.trim();
 
     if (username && email && password) {
-        document.location.replace('/home');
+        const response = await fetch('/api/users', {
+            method: 'POST',
+            body: JSON.stringify({ username, email, password }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        
+        if (response.ok) {
+            document.location.replace('/home');
+        } else {
+            console.log('Something went wrong');
+        }
+    }
+};
+// Log out
+const logoutButtonHandler = async () => {
+    const response = await fetch('/api/users/logout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+  
+    if (response.ok) {
+      document.location.replace('/');
     } else {
-        console.log('error');
+      console.log('Something went wrong');
     }
 };
 // Login
@@ -48,4 +67,9 @@ if (loginForm) {
 const signupForm = document.querySelector('#signup-form');
 if (signupForm) {
     signupForm.addEventListener('submit', signupFormHandler);
+}
+//Log Out
+const logoutButton = document.querySelector('#logout-button');
+if (logoutButton) {
+    logoutButton.addEventListener('click', logoutButtonHandler);
 }

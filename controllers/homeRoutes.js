@@ -13,9 +13,8 @@ router.get('/', async (req, res) => {
 });
 
 // Get home page
-router.get('/home', async (req, res) => {
+router.get('/home', withAuth, async (req, res) => {
     try {
-      console.log("HomeRoutes working");
       res.render('home');
     } catch (err) {
       res.status(500).json(err);
@@ -23,7 +22,7 @@ router.get('/home', async (req, res) => {
 });
 
 // Get profile page
-router.get('/profile', async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
     try {
       res.render('profile');
     } catch (err) {
@@ -32,7 +31,7 @@ router.get('/profile', async (req, res) => {
 });
 
 // Get upload page
-router.get('/upload', async (req, res) => {
+router.get('/upload', withAuth, async (req, res) => {
     try {
       res.render('upload');
     } catch (err) {
@@ -41,7 +40,7 @@ router.get('/upload', async (req, res) => {
 });
 
 // Get search page
-router.get('/search', async (req, res) => {
+router.get('/search', withAuth, async (req, res) => {
     try {
       res.render('search');
     } catch (err) {
@@ -50,7 +49,7 @@ router.get('/search', async (req, res) => {
 });
 
 // Get one folder
-router.get('/openfolder', async (req, res) => {
+router.get('/openfolder', withAuth, async (req, res) => {
     try {
       res.render('openedFolder');
     } catch (err) {
@@ -59,7 +58,7 @@ router.get('/openfolder', async (req, res) => {
 });
 
 // Get one item
-router.get('/openitem', async (req, res) => {
+router.get('/openitem', withAuth, async (req, res) => {
     try {
       res.render('playscreen');
     } catch (err) {
