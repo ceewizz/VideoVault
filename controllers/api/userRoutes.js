@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-
+// Sign Up
 router.post('/', async (req, res) => {
   try {
     // Create new user based on the req object (must match user model).
@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
-
+//  Login
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { username: req.body.username } });
@@ -47,6 +47,20 @@ router.post('/login', async (req, res) => {
 
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+// Logout
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    // Express session used to destroy the session server side 
+    req.session.destroy(() => {
+      res
+        .clearCookie('connect.sid') // Set cookie to expired and removed by browser
+        .status(204)
+        .end();
+    });
+  } else {
+    res.status(404).end();
   }
 });
 

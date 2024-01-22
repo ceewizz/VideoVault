@@ -20,7 +20,7 @@ const loginFormHandler = async (event) => {
         if (response.ok) {
             document.location.replace('/home');
         } else {
-            console.log('Something went wrong')
+            console.log('Something went wrong');
         }
     }
 };
@@ -37,12 +37,25 @@ const signupFormHandler = async (event) => {
             body: JSON.stringify({ username, email, password }),
             headers: { 'Content-Type': 'application/json' },
         });
-      
+        
         if (response.ok) {
             document.location.replace('/home');
         } else {
-            console.log('Something went wrong')
+            console.log('Something went wrong');
         }
+    }
+};
+// Log out
+const logoutButtonHandler = async () => {
+    const response = await fetch('/api/users/logout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+  
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+      console.log('Something went wrong');
     }
 };
 // Login
@@ -54,4 +67,9 @@ if (loginForm) {
 const signupForm = document.querySelector('#signup-form');
 if (signupForm) {
     signupForm.addEventListener('submit', signupFormHandler);
+}
+//Log Out
+const logoutButton = document.querySelector('#logout-button');
+if (logoutButton) {
+    logoutButton.addEventListener('click', logoutButtonHandler);
 }
