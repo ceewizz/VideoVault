@@ -13,9 +13,8 @@ router.get('/', async (req, res) => {
 });
 
 // Get home page
-router.get('/home', async (req, res) => {
+router.get('/home', withAuth, async (req, res) => {
     try {
-      console.log("HomeRoutes working");
       res.render('home');
     } catch (err) {
       res.status(500).json(err);
