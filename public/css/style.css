@@ -41,3 +41,26 @@ body {
     min-height: 100vh;
     overflow-y: auto;
 }
+/* Login */
+.login-container {
+    min-height: 300px;
+}
+/* Modals */
+.modal {
+    background-color: black; 
+    display: none;
+    max-width: 280px;
+}
+
+.modal-content {
+    padding: 1rem;
+    border-radius: 0.25rem;
+    text-align: center;
+}
+
+.close-button {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+    margin-left: 0.25rem;
+}
