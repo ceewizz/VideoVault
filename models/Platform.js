@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../config/connection'); 
 
 class Platform extends Model {}
 
@@ -24,7 +24,6 @@ Platform.init(
         platform.name = platform.name.charAt(0).toUpperCase() + platform.name.slice(1);
       },
     },
-  }
-);
+  };
 
 module.exports = Platform;

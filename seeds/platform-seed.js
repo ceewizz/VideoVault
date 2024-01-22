@@ -1,14 +1,8 @@
-const { Platform } = require('.models'); 
-
-const platformData = [
-  { name: 'YouTube' },
-  { name: 'Facebook' },
-  { name: 'TikTok' }
-  // Additional platforms if needed.
-];
+const { Platform } = require('../models'); 
+const platformData = require('./seed-data/platformData.json');
 
 const seedPlatforms = async () => {
-  await Platform.bulkCreate(platformData);
+  await Platform.bulkCreate({platformData});
 };
 
 module.exports = seedPlatforms;
