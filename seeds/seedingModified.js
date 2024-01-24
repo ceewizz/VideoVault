@@ -1,10 +1,5 @@
 const sequelize = require('../config/connection');
 const { User, MediaItem, Folder } = require('../models');
-const bcrypt = require('bcrypt');
-
-const hashPassword = async (password) => {
-  return await bcrypt.hash(password, 10);
-};
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -17,7 +12,7 @@ const seedDatabase = async () => {
       User.create({
         username: `user${i}`,
         email: `user${i}@example.com`,
-        password: await hashPassword(`password${i}${i}${i}`),
+        password: `password${i}${i}${i}`,
       }).then((user) => {
         // Only push the folder promises to be resolved and use the user instances to assign an owner
         return Folder.create({
