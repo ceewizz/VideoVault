@@ -1,8 +1,7 @@
 const sequelize = require('../config/connection');
-const { User, MediaItem, Platform } = require('../models');
+const { User, MediaItem, Folder } = require('../models');
 const bcrypt = require('bcrypt');
 
-// Async function to hash passwords
 const hashPassword = async (password) => {
   return await bcrypt.hash(password, 10);
 };
@@ -10,70 +9,48 @@ const hashPassword = async (password) => {
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
   console.log('\n----- DATABASE SYNCED -----\n');
+  // Create users and a folder for each user
+  const userFolderPromises = [];
+  for (let i = 1; i <= 6; i++) {
+    userFolderPromises.push(
+      // Create a user
+      User.create({
+        username: `user${i}`,
+        email: `user${i}@example.com`,
+        password: await hashPassword(`password${i}${i}${i}`),
+      }).then((user) => {
+        // Only push the folder promises to be resolved and use the user instances to assign an owner
+        return Folder.create({
+          folderName: `Folder for user${i}`,
+          userId: user.userId,
+        });
+      })
+    );
+  }
+  // Wait for all promises to resolve and assign to usersFolders so that items can be added
+  const usersFolders = await Promise.all(userFolderPromises);
+  console.log('\n----- USERS AND FOLDERS SEEDED -----\n');
 
-  // Create sample users
-  const users = await Promise.all([
-    User.create({
-      username: 'user1',
-      email: 'user1@example.com',
-      password: await hashPassword('password123'),
-    }),
-    User.create({
-      username: 'user2',
-      email: 'user2@example.com',
-      password: await hashPassword('password456'),
-    }),
-    User.create({
-      username: 'user3',
-      email: 'user3@example.com',
-      password: await hashPassword('password789'),
-    })
-  ]);
-  console.log('\n----- USERS SEEDED -----\n');
-
-  // Create a sample platform
-  const platforms = await Platform.bulkCreate([
-    { name: 'Example Platform' }
-  ]);
-  console.log('\n----- PLATFORM SEEDED -----\n');
-
-  // Create sample media items
-  const mediaItems = await MediaItem.bulkCreate([
-    {
-      title: 'Media Item 1',
-      url: 'http://example.com/media1',
-      type: 'Video',
-      userId: users[0].id, 
-      platformId: platforms[0].id,
-    },
-    {
-      title: 'Media Item 2',
-      url: 'http://example.com/media2',
-      type: 'Video',
-      userId: users[1].id, 
-      platformId: platforms[0].id,
-    },
-    {
-      title: 'Media Item 3',
-      url: 'http://example.com/media3',
-      type: 'Video',
-      userId: users[2].id, 
-      platformId: platforms[0].id,
-    },
-    {
-      title: 'Media Item 4',
-      url: 'http://example.com/media4',
-      type: 'Video',
-      userId: users[2].id, 
-      platformId: platforms[0].id,
-    }
-  ]);
+  // Create an items one for each folder
+  const mediaItemsPromises = usersFolders.map((folder, index) => {
+    // To pass validation, make sure url is valid in its structure
+    const formattedFolderName = encodeURIComponent(`Folder for user${index + 1}`);
+    // With the id from each folder, create a media item and return the promise that will be resolved to media item objects. 
+    return MediaItem.create({
+      itemName: `Media Item for ${folder.folderName}`,
+      itemUrl: `http://example.com/mediaFor${formattedFolderName}`,
+      itemType: 'Video',
+      folderId: folder.folderId,
+    });
+  });
+  // Wait for all media items to be created (promises resolved)
+  await Promise.all(mediaItemsPromises);
   console.log('\n----- MEDIA ITEMS SEEDED -----\n');
-
   process.exit(0);
 };
-
+// Catch all errors if seedDatabase promise is rejected.
 seedDatabase().catch((error) => {
   console.error('Failed to seed database:', error);
   process.exit(1);
 });
+
