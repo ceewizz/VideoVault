@@ -1,7 +1,7 @@
 // withAuth method ready to be added to routes that should be protected
 const withAuth = require('../utils/auth');
-
 const router = require('express').Router();
+const { User, Folder, MediaItem} = require('../models')
 
 // Get home page
 router.get('/', async (req, res) => {
@@ -15,7 +15,21 @@ router.get('/', async (req, res) => {
 // Get home page
 router.get('/home', withAuth, async (req, res) => {
     try {
-      res.render('home');
+      const userId = req.session.user_id;
+
+      if (!userId) {
+        throw new Error("User ID not found in session");
+      }
+      
+      const folderData = await Folder.findAll({
+        where: {
+          userId: userId
+        }
+      });
+      // console.log(folderData);
+      const folders = folderData.map(folder => folder.get({plain: true}));
+      // console.log(folders);
+      res.render('home', { folders });
     } catch (err) {
       res.status(500).json(err);
     }
