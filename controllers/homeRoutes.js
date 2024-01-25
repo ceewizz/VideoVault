@@ -92,7 +92,29 @@ router.get('/folder/:folderId', withAuth, async (req, res) => {
 // Get one item
 router.get('/item/:itemId', withAuth, async (req, res) => {
     try {
-      res.render('playscreen');
+      const userId = req.session.user_id;
+      const itemId = req.params.itemId;
+
+      const itemData = await MediaItem.findOne({
+        where: {
+          itemId: itemId
+        },
+        include: [{
+          model: Folder,
+          where: {userId: userId},
+          // No need to bring folder data
+          attributes: []
+        }]
+      });
+
+      if (!itemData) {
+        res.status(404).json({message: 'Item not found or does not belong to user.'})
+      }
+
+      const item = itemData.get({ plain: true });
+      console.log(item);
+
+      res.render('playscreen', { item });
     } catch (err) {
       res.status(500).json(err);
     }
