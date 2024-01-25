@@ -1,13 +1,7 @@
-<div>
-    <h2>This is the homepage.</h2>
-    {{>folder}}
-    {{>folder}}
-    {{>folder}}
-    {{>folder}}
-    {{>folder}}
-    {{>folder}}
-    {{>folder}}
-    {{>folder}}
-    {{>folder}}
-    {{>folder}}
-</div>
+{{#each folders as |folder| }}
+  <div>
+    <h2>
+      <a href="/folder/{{folder.folderId}}">{{folder.folderName}}</a>
+    </h2>
+  </div>
+{{/each}}

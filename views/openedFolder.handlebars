@@ -1,8 +1,10 @@
 <div>
-    <h2>This is the folder containing the items.</h2>
-    {{>item}}
-    {{>item}}
-    {{>item}}
-    {{>item}}
-    {{>item}}
+    <h2>Items in {{folder.folderName}}:</h2>
+    <ul>
+        {{#each folder.mediaItems as |item|}}
+        <li>
+            <a href="/item/{{item.itemId}}">{{item.itemName}}</a> - {{item.itemUrl}}
+        </li>
+        {{/each}}
+    </ul>
 </div>
