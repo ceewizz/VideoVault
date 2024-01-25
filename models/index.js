@@ -1,16 +1,25 @@
-const User = require('./Users');
+const User = require('./User');
 const MediaItem = require('./MediaItem');
-const Platform = require('./Platform'); 
+const Folder = require('./Folder'); 
 
-User.hasMany(MediaItem, { foreignKey: 'userId' });
-MediaItem.belongsTo(User, { foreignKey: 'userId' });
+User.hasMany(Folder, { 
+  foreignKey: 'userId' 
+});
 
+Folder.belongsTo(User, { 
+  foreignKey: 'userId' 
+});
 
-Platform.hasMany(MediaItem, { foreignKey: 'platformId' });
-MediaItem.belongsTo(Platform, { foreignKey: 'platformId' });
+Folder.hasMany(MediaItem, { 
+  foreignKey: 'folderId' 
+});
+
+MediaItem.belongsTo(Folder, { 
+  foreignKey: 'folderId' 
+});
 
 module.exports = {
   User,
   MediaItem,
-  Platform 
+  Folder 
 };

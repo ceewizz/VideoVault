@@ -1,0 +1,30 @@
+<div>
+    <h2>Sign Up</h2>
+    <form id="signup-form">
+        <div>
+            <label for="username">User Name:</label>
+            <input type="text" id="username" />
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" />
+        </div>
+        <div>
+            <label for="password">password:</label>
+            <input type="text" id="password" />
+        </div>
+        <div>
+            <button type="submit">Sign Up</button>
+        </div>
+    </form>
+    {{!-- Modal for displaying credential input errors --}}
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">x</span>
+            <p id="error-message">{{!-- Error message here --}}</p>
+        </div>
+    </div>
+</div>
+
+<script src="/js/authHandlers.js"></script>
+<script src="/js/modals.js"></script>

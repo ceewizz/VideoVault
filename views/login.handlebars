@@ -1,0 +1,26 @@
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="login-form">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="text" id="password" />
+        </div>
+        <div>
+            <button type="submit">login</button>
+        </div>
+    </form>
+    {{!-- Modal for displaying credential input errors --}}
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">x</span>
+            <p id="error-message">{{!-- Error message here --}}</p>
+        </div>
+    </div>
+</div>
+
+<script src="/js/authHandlers.js"></script>
+<script src="/js/modals.js"></script>

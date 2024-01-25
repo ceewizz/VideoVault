@@ -1,41 +1,48 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('.config/connection'); 
+const sequelize = require('../config/connection'); 
 
 class MediaItem extends Model {}
 
-MediaItem.init({
-  
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
+MediaItem.init(
+  {
+    itemId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    itemName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    itemUrl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isURL: true,
+      },
+    },
+    itemType: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    folderId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'folder',
+        key: 'folderId',
+      },
+    },
+    dateUploaded: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
-  
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  
-  url: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      isURL: true
-    }
-  },
-  
-  type: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  
-  userId: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'users', 
-      key: 'id'
-    }
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    modelName: 'mediaItem',
   }
-}, { sequelize, modelName: 'mediaItem' });
+);
 
 module.exports = MediaItem;
