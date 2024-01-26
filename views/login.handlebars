@@ -1,26 +1,39 @@
-<div class="login-container">
-    <h2>Login</h2>
-    <form id="login-form">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" />
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="text" id="password" />
-        </div>
-        <div>
-            <button type="submit">login</button>
-        </div>
-    </form>
-    {{!-- Modal for displaying credential input errors --}}
-    <div id="error-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">x</span>
-            <p id="error-message">{{!-- Error message here --}}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/css/login.css"> 
+</head>
+<body>
+     <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your username" />
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password" />
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+            <div>
+                <a href="#" class="forgot-password">Forgot your password?</a>
+            </div>
+        </form>
+        <!-- Modal for displaying credential input errors -->
+        <div id="error-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">x</span>
+                <p id="error-message"><!-- Error message here --></p>
+            </div>
         </div>
     </div>
-</div>
-
-<script src="/js/authHandlers.js"></script>
-<script src="/js/modals.js"></script>
+    <script src="/js/authHandlers.js"></script>
+    <script src="/js/modals.js"></script>
+</body>
+</html>
