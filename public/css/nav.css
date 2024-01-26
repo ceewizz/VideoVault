@@ -40,3 +40,26 @@
     display: block; 
     margin-bottom: 5px; 
 }
+
+@media (min-width: 768px) {
+    .navbar {
+        width: 300px;     
+        height: 100vh;     
+        top: 0;           
+        bottom: auto;     
+        border-radius: 0 10px 10px 0; 
+    }
+
+    .navbar-nav {
+        flex-direction: column; 
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-link {
+        text-align: left; 
+        padding: 10px 15px; 
+    }
+}
