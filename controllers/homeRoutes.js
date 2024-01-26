@@ -1,7 +1,8 @@
 // withAuth method ready to be added to routes that should be protected
 const withAuth = require('../utils/auth');
+const fetchTikTokData = require('../utils/fetch');
 const router = require('express').Router();
-const { User, Folder, MediaItem} = require('../models')
+const { User, Folder, MediaItem} = require('../models');
 
 // Get Initial page
 router.get('/', async (req, res) => {
@@ -114,7 +115,13 @@ router.get('/item/:itemId', withAuth, async (req, res) => {
       const item = itemData.get({ plain: true });
       console.log(item);
 
-      res.render('playscreen', { item });
+      // const tiktokVideoUrl = `https://www.tiktok.com/oembed?url=${item.itemUrl}`;
+      const tiktokVideoUrl = `https://www.tiktok.com/oembed?url=https://www.tiktok.com/@scout2015/video/6718335390845095173`;
+      const tiktokData = await fetchTikTokData(tiktokVideoUrl);
+      console.log(tiktokData);
+
+
+      res.render('playscreen', { item, tiktokResponse: tiktokData });
     } catch (err) {
       res.status(500).json(err);
     }
