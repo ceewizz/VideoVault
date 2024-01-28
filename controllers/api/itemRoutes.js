@@ -1,8 +1,9 @@
 const router = require('express').Router();
 
-router.get('/', async (req, res) => {
+router.post('/upload', async (req, res) => {
     try {
-      console.log("itemRoutes working")
+      console.log(req.body);
+      res.render('uploadTesting')
     } catch (err) {
       res.status(500).json(err);
     }
