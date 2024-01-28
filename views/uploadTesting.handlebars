@@ -28,5 +28,16 @@
     <input type="file" id="file" name="file" accept="image/*">
 
     <button type="submit">Upload</button>
+
+    <!-- Modal for displaying credential input errors -->
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">x</span>
+            <p id="error-message"><!-- Error message here --></p>
+        </div>
+    </div>
   </form>
 </div>
+
+<script src="/js/modals.js"></script>
+<script src="/js/upload.js"></script>

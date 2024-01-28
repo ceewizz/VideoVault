@@ -48,7 +48,7 @@ router.get('/profile', withAuth, async (req, res) => {
 // Get upload page
 router.get('/upload', withAuth, async (req, res) => {
     try {
-      res.render('upload');
+      res.render('uploadTesting');
     } catch (err) {
       res.status(500).json(err);
     }
