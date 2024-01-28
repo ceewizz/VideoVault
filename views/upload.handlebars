@@ -1,0 +1,52 @@
+<div class="upload-container">
+    <h2>Upload</h2>
+    <form id="upload-form">
+        <div class="form-group">
+            <select id="type" class="form-control">
+                <option>URL</option>
+                <option>Local Image</option>
+            </select>
+        </div>
+        <div class="form-group">
+            {{!-- <label for="location">Location:</label> --}}
+            <select id="location" class="form-control">
+                <option value="folder1">Folder 1</option>
+                <option value="folder2">Folder 2</option>
+                <option value="folder3">Folder 3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="text" id="folder-name" class="form-control" placeholder="Folder Name (If new folder/ grayed out if folder" />
+        </div>
+        <div class="form-group">
+            <input type="text" id="url" class="form-control" placeholder="URL" />
+        </div>
+        <div class="form-group">
+            <input type="text" id="name" class="form-control" placeholder="Item Name" />
+        </div>
+        <div class="form-group">
+            <input type="file" id="file" class="form-control" name="file" accept="image/*" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn-upload">
+                <ion-icon name="cloud-upload-outline"></ion-icon>
+                Upload
+            </button>
+        </div>
+        <!-- Modal for displaying credential input errors -->
+        <div id="error-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">x</span>
+                <p id="error-message"><!-- Error message here --></p>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="/js/authHandlers.js"></script>
+<script src="/js/upload.js"></script>
+<script src="/js/modals.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+

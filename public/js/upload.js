@@ -5,7 +5,7 @@ const uploadFormHandler = async (event) => {
     const locationSelect = document.querySelector('#location').value;
     const folderNameInput = document.querySelector('#folder-name').value.trim();
     const urlInput = document.querySelector('#url').value.trim();
-    const itemNameInput = document.querySelector('#item-name').value.trim();
+    const itemNameInput = document.querySelector('#name').value.trim();
     // const fileInput = document.querySelector('#file').files[0];
     if (!typeSelect || !locationSelect || !folderNameInput || !urlInput || !itemNameInput) {
         document.getElementById('error-message').textContent = 'Missing Field';
@@ -34,7 +34,7 @@ const uploadFormHandler = async (event) => {
 };
 
 //Upload form selector
-const uploadForm = document.querySelector('.upload-form');
+const uploadForm = document.querySelector('#upload-form');
 if (uploadForm) {
     uploadForm.addEventListener('submit', uploadFormHandler);
 }
