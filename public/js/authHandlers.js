@@ -31,6 +31,12 @@ const signupFormHandler = async (event) => {
     const email = document.querySelector('#email').value.trim();
     const password = document.querySelector('#password').value.trim();
 
+    if (!username || !password || !email) {
+        document.getElementById('error-message').textContent = 'Empty field. Please check your input.';
+        showModal();
+        return;
+    }
+
     if (username && email && password) {
         const response = await fetch('/api/users/signup', {
             method: 'POST',
