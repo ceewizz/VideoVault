@@ -17,9 +17,9 @@ MediaItem.init(
     itemUrl: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isURL: true,
-      },
+      // validate: {
+      //   isURL: true,
+      // },
     },
     itemType: {
       type: DataTypes.STRING,
