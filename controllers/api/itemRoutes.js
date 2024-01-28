@@ -1,20 +1,24 @@
+const parser = require('../../utils/multer');
 const { MediaItem } = require('../../models');
-
 const router = require('express').Router();
 
-router.post('/upload', async (req, res) => {
+router.post('/upload', parser.single('file'), async (req, res) => {
     try {
-      console.log(req.body);
-      const payload = req.body
+      let itemUrl = req.body.urlInput; 
+      if (req.file) {
+        itemUrl = req.file.path;
+      }
+      
       const newMediaItem = await MediaItem.create({
-        itemName: payload.itemNameInput,
-        itemUrl: payload.urlInput,
-        itemType: payload.typeSelect,
-        // Id will be passed by form query. 
-        folderId: 3,
-      })
+        itemName: req.body.itemNameInput,
+        itemUrl: itemUrl,
+        itemType: req.body.typeSelect,
+        folderId: 3, //Receive from form query
+      });
+
       res.status(200).json(newMediaItem);
     } catch (err) {
+      // Work on error response (Worong file format and minimal info)
       res.status(500).json(err);
     }
 });

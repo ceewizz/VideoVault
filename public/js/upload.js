@@ -13,31 +13,48 @@ const uploadFormHandler = async (event) => {
         return;
     }
 
+    const formData = new FormData();
+    formData.append('typeSelect', typeSelect);
+    formData.append('locationSelect', locationSelect);
+    formData.append('folderNameInput', folderNameInput);
+    formData.append('itemNameInput', itemNameInput);
+
+    if (typeSelect === 'Local Image') {
+        const fileInput = document.querySelector('#file').files[0];
+        if (fileInput) {
+            formData.append('file', fileInput);
+        } else {
+            // Handle error for missing file
+            document.getElementById('error-message').textContent = 'Please select a file to upload';
+            showModal();
+            return;
+        }
+    } else {
+        formData.append('urlInput', urlInput);
+    }
+
     try {
-        // Send a POST request with the form data
         const response = await fetch('/api/items/upload', { 
             method: 'POST',
-            body: JSON.stringify({ typeSelect, locationSelect, folderNameInput, urlInput, itemNameInput }),
-            headers: { 'Content-Type': 'application/json' },
+            body: formData,
         });
 
         if (response.ok) {
-            console.log('Upload successful!');
-            document.location.replace('/upload'); 
+            // console.log('Upload successful!');
+            // folderNameInput.value = '';
+            // urlInput.value = '';
+            // itemNameInput.value = '';
             // Using modal, but for confirmation of upload.
             document.getElementById('error-message').textContent = 'Upload Successful!';
             showModal();
         } else {
+            // Work on failed response messages
             const result = await response.json();
-            // console.log('Something went wrong:', result.message);
-            // Using modal, but for confirmation of upload.
-            document.getElementById('error-message').textContent = 'Upload failed, please try again later.';
-            showModal();
+            console.error('Upload failed:', result.message);
         }
     } catch (error) {
-        // console.error('Error');
-        document.getElementById('error-message').textContent = 'Upload failed, please try again later.';
-        showModal();
+        // Work on failed response messages
+        console.error('Error during upload:', error);
     }
 };
 
