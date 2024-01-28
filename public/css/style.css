@@ -47,7 +47,7 @@ body {
 }
 /* Modals */
 .modal {
-    background-color: black; 
+    background-color: rgba(0, 0, 0, 0.5);
     display: none;
     max-width: 280px;
 }

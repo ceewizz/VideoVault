@@ -23,13 +23,21 @@ const uploadFormHandler = async (event) => {
 
         if (response.ok) {
             console.log('Upload successful!');
-            document.location.replace('/home'); 
+            document.location.replace('/upload'); 
+            // Using modal, but for confirmation of upload.
+            document.getElementById('error-message').textContent = 'Upload Successful!';
+            showModal();
         } else {
             const result = await response.json();
-            console.log('Something went wrong:', result.message);
+            // console.log('Something went wrong:', result.message);
+            // Using modal, but for confirmation of upload.
+            document.getElementById('error-message').textContent = 'Upload failed, please try again later.';
+            showModal();
         }
     } catch (error) {
-        console.error('Error');
+        // console.error('Error');
+        document.getElementById('error-message').textContent = 'Upload failed, please try again later.';
+        showModal();
     }
 };
 
