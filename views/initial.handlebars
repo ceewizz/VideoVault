@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Initial page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Website</title>
+  <link rel="stylesheet" href="/css/initialPage.css">
 </head>
-<body background-color="black">
-    <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fyt3.googleusercontent.com%2FVl05orB_ddFlxsZAjWWy58kPPsI2e7TAlk5bLWoBWvJc2jqSBd7d-2Ipx9EefDc-WmzE9G9LIns%3Ds900-c-k-c0x00ffffff-no-rj&tbnid=DcE193zcOSF8yM&vet=12ahUKEwjtxo_FpPqDAxUNI0QIHU6nBkwQMygAegQIARBM..i&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fchannel%2FUCvi9CWh3-RfMW8ZC3Fnsk8Q&docid=bzUV85raV2-2cM&w=900&h=900&q=video%20vault&ved=2ahUKEwjtxo_FpPqDAxUNI0QIHU6nBkwQMygAegQIARBM">Sample Image
-<h1 color="white">Welcome to VideoVault & let's
-<p>VideoVault is the ultimate app for organizing and enjoying your video content. Download now and</p></h1>
-
-<button id1="login"><a href="/login">Login</a></button>
- 
-
-<button id2="signup"><a href="/signup">Signup</a></button>
-
+<body>
+  {{#if isAuthenticated}}
+    <p>Hello, {{username}}!</p>
+  {{else}}
+    <div class="img-container">
+      <img src='https://news.mit.edu/sites/default/files/styles/news_article__image_gallery/public/images/202010/LIDS-Synthetic-Data-Vault.png?itok=B2viUOJl'>
+      <div></div>
+    </div>
+    <h1>Welcome to VideoVault!</h1>
+    <p>Videovault is the ultimate app for organizing and enjoying your video content. Download now and</p>
+    <a href="/login">Log in</a>
+    <a href="/signup">Join VideoVault</a>
+  {{/if}}
 </body>
 </html>
