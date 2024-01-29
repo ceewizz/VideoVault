@@ -10,9 +10,9 @@
         <div class="form-group">
             {{!-- <label for="location">Location:</label> --}}
             <select id="location" class="form-control">
-                <option value="folder1">Folder 1</option>
-                <option value="folder2">Folder 2</option>
-                <option value="folder3">Folder 3</option>
+                {{#each folders as |folder| }}
+                <option value="{{folder.folderId}}">{{folder.folderName}}</option>
+                {{/each}}
             </select>
         </div>
         <div class="form-group">

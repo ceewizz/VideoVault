@@ -48,7 +48,18 @@ router.get('/profile', withAuth, async (req, res) => {
 // Get upload page
 router.get('/upload', withAuth, async (req, res) => {
     try {
-      res.render('upload');
+      const userId = req.session.user_id;
+      const folderData = await Folder.findAll({
+        where: {
+          userId: userId
+        }
+      });
+      if (!folderData) {
+        res.status(404).json({message: 'Folder not found or does not belong to user.'})
+      }
+      const folders = folderData.map(folder => folder.get({ plain: true }));
+      console.log(folders);
+      res.render('upload', { folders });
     } catch (err) {
       res.status(500).json(err);
     }
