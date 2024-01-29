@@ -1,12 +1,11 @@
 <section class="folder-content">
     <header class="folder-header">
-        <h2>{{folderName}}</h2>
+        <h2>Items in {{folder.folderName}}:</h2>
     </header>
     <div class="folder-items">
-        {{#each items}}
+        {{#each folder.mediaItems as |item|}}
             <div class="folder-item">
-                <img src="{{this.thumbnail}}" alt="{{this.title}}">
-                <span>{{this.title}}</span>
+                <h2><a href="/item/{{item.itemId}}">{{item.itemName}}</a> - {{item.itemUrl}}</h2>
             </div>
         {{/each}}
     </div>
