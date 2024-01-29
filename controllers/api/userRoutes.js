@@ -1,14 +1,14 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Folder, MediaItem } = require('../../models');
 // Sign Up
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
   try {
     // Create new user based on the req object (must match user model).
     const userData = await User.create(req.body);
     // Create a new session and add user id as well as logged in status to the response object. 
     // Express-session middleware automatically sets the connect.sid cookie in the user's browser. 
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.user_id = userData.userId;
       req.session.logged_in = true;
       // Send back the user data
       res.status(200).json(userData);
@@ -20,7 +20,9 @@ router.post('/', async (req, res) => {
 //  Login
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { username: req.body.username } });
+    const userData = await User.findOne({ 
+      where: { username: req.body.username }
+    });
 
     if (!userData) {
       res
@@ -39,10 +41,10 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.user_id = userData.userId;
       req.session.logged_in = true;
-      
       res.json({ user: userData, message: 'Login Successful' });
+      // console.log(userData);
     });
 
   } catch (err) {

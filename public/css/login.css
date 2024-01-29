@@ -1,0 +1,70 @@
+.login-container {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ddd;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #222;
+    color: white;
+    box-sizing: border-box;
+}
+
+.login-container #password {
+    margin-bottom: 25px;
+}
+
+.login-container button {
+    background-color: #72a0c1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: darkblue;
+}
+
+.login-container input::placeholder {
+    color: #ccc;
+}
+
+.modal {
+    display: none;
+    background-color: rgb(40, 40, 40);
+    margin-top: 2rem;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    color: lightgrey;
+}

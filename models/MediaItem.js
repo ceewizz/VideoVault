@@ -5,31 +5,31 @@ class MediaItem extends Model {}
 
 MediaItem.init(
   {
-    id: {
+    itemId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
+    itemName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    url: {
+    itemUrl: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isURL: true,
-      },
+      // validate: {
+      //   isURL: true,
+      // },
     },
-    type: {
+    itemType: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userId: {
+    folderId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'users',
-        key: 'id',
+        model: 'folder',
+        key: 'folderId',
       },
     },
     dateUploaded: {
@@ -39,12 +39,9 @@ MediaItem.init(
   },
   {
     sequelize,
-    modelName: 'MediaItem',
-    hooks: {
-      beforeCreate: (mediaItem) => {
-        mediaItem.dateUploaded = new Date();
-      },
-    },
+    timestamps: false,
+    freezeTableName: true,
+    modelName: 'mediaItem',
   }
 );
 

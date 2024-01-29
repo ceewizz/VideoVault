@@ -4,26 +4,30 @@
     <form id="login-form">
         <div>
             <label for="username">Username:</label>
-            <input type="text" id="username" />
+            <input type="text" id="username" placeholder="Enter your username" />
         </div>
         <div>
             <label for="password">Password:</label>
-            <input type="text" id="password" />
+            <input type="password" id="password" placeholder="Enter your password" />
         </div>
         <div>
             <button href="/login">Login</button>
                 <br>
             <a href="/signup" class="forgot-password-link">Forgot your password?</p>
+            <button type="submit">Login</button>
+        </div>
+        <div>
+            <a href="#" class="forgot-password">Forgot your password?</a>
+        </div>
+        <!-- Modal for displaying credential input errors -->
+        <div id="error-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">x</span>
+                <p id="error-message"><!-- Error message here --></p>
+            </div>
         </div>
     </form>
-    {{!-- Modal for displaying credential input errors --}}
-    <div id="error-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">x</span>
-            <p id="error-message">{{!-- Error message here --}}</p>
-        </div>
-    </div>
 </div>
-
 <script src="/js/authHandlers.js"></script>
 <script src="/js/modals.js"></script>
+

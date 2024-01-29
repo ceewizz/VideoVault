@@ -1,8 +1,13 @@
-<div>
-    <h2>This is the folder containing the items.</h2>
-    {{>item}}
-    {{>item}}
-    {{>item}}
-    {{>item}}
-    {{>item}}
-</div>
+<section class="folder-content">
+    <header class="folder-header">
+        <h2>{{folderName}}</h2>
+    </header>
+    <div class="folder-items">
+        {{#each items}}
+            <div class="folder-item">
+                <img src="{{this.thumbnail}}" alt="{{this.title}}">
+                <span>{{this.title}}</span>
+            </div>
+        {{/each}}
+    </div>
+</section>
