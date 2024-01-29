@@ -1,0 +1,59 @@
+  div.login-container {
+    background-color: rgb(51, 48, 45);
+    width: 80%; /* Adjust this value as needed */
+    max-width: 400px; /* Set a maximum width if necessary */
+    margin: 10px 14px; /* Center the container horizontally */
+    padding: 20px; /* Optional: Add padding for better aesthetics */
+    box-sizing: border-box;
+    position: inline-block;
+  }
+
+  h2 {
+    position: sticky;
+    top: 0;
+    margin: -20px 0px 20px -20px; /* Adjust margins to align with container edges */
+    padding: 10px 20px;
+    width: calc(100% + 40px); /* Expand to the width of the container */
+    text-decoration: none;
+    background-color: #007BFF;
+    border-radius: 5px;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+}
+
+  button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007BFF;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  a.forgot-password-link {
+    margin: 10px;
+    text-decoration: none;
+    color: #007BFF;
+    transition: color 0.3s;
+    cursor: pointer; /* Add cursor style to indicate it's clickable */
+  }
+  
+  a.forgot-password-link:hover {
+      color: #0056b3; /* Change text color on hover */
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    background-color: transparent; /* Make the textbox transparent */
+    color: #fff; /* Set text color to white */
+}
