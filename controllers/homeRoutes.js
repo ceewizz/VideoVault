@@ -48,7 +48,18 @@ router.get('/profile', withAuth, async (req, res) => {
 // Get upload page
 router.get('/upload', withAuth, async (req, res) => {
     try {
-      res.render('upload');
+      const userId = req.session.user_id;
+      const folderData = await Folder.findAll({
+        where: {
+          userId: userId
+        }
+      });
+      if (!folderData) {
+        res.status(404).json({message: 'Folder not found or does not belong to user.'})
+      }
+      const folders = folderData.map(folder => folder.get({ plain: true }));
+      console.log(folders);
+      res.render('upload', { folders });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -109,19 +120,21 @@ router.get('/item/:itemId', withAuth, async (req, res) => {
       });
 
       if (!itemData) {
-        res.status(404).json({message: 'Item not found or does not belong to user.'})
+        res.status(404).json({message: 'Item not found or does not belong to user.'});
+        return;
       }
 
       const item = itemData.get({ plain: true });
       console.log(item);
-
-      // const tiktokVideoUrl = `https://www.tiktok.com/oembed?url=${item.itemUrl}`;
-      const tiktokVideoUrl = `https://www.tiktok.com/oembed?url=https://www.tiktok.com/@scout2015/video/6718335390845095173`;
-      const tiktokData = await fetchTikTokData(tiktokVideoUrl);
-      console.log(tiktokData);
-
-
-      res.render('playscreen', { item, tiktokResponse: tiktokData });
+      if (item.itemType == 'URL') {
+        // const tiktokVideoUrl = `https://www.tiktok.com/oembed?url=https://www.tiktok.com/@scout2015/video/6718335390845095173`;
+        const tiktokVideoUrl = `https://www.tiktok.com/oembed?url=${item.itemUrl}`;
+        const tiktokData = await fetchTikTokData(tiktokVideoUrl);
+        res.render('playscreen', { item, tiktokResponse: tiktokData });
+        // console.log(tiktokData);
+      } else {
+        res.render('playscreen', { item });
+      }
     } catch (err) {
       res.status(500).json(err);
     }

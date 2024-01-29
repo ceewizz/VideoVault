@@ -1,3 +1,46 @@
+// Future vesrion of validation will make an api call to tik tok itself to check for existence of video. 
+function isValidTikTokUrl(url) {
+    const tiktokRegex = /^https:\/\/www\.tiktok\.com\/@[\w.-]+\/video\/\d+$/;
+    return tiktokRegex.test(url);
+}
+// Function to toggle input states
+function toggleInputStates() {
+    const typeSelect = document.querySelector('#type').value;
+    const locationSelect = document.querySelector('#location').value;
+    const urlInput = document.querySelector('#url');
+    const fileInput = document.querySelector('#file');
+    const folderNameInput = document.querySelector('#folder-name');
+
+    // Toggle URL input and File input based on type selection
+    if (typeSelect === 'Local Image') {
+        urlInput.disabled = true;
+        fileInput.disabled = false;
+        urlInput.value = '';
+    } else {
+        urlInput.disabled = false;
+        fileInput.disabled = true;
+        if (fileInput.files.length) {
+            fileInput.value = '';
+        }
+    }
+
+    // Toggle folder name input based on location selection
+    if (locationSelect === 'New Folder') {
+        folderNameInput.disabled = false;
+    } else {
+        folderNameInput.disabled = true;
+        folderNameInput.value = ''; // Clear input if disabled
+    }
+}
+
+// Event listener for type selection
+document.querySelector('#type').addEventListener('change', toggleInputStates);
+
+// Event listener for location selection
+document.querySelector('#location').addEventListener('change', toggleInputStates);
+
+
+
 const uploadFormHandler = async (event) => {
     event.preventDefault();
 
@@ -6,11 +49,44 @@ const uploadFormHandler = async (event) => {
     const folderNameInput = document.querySelector('#folder-name').value.trim();
     const urlInput = document.querySelector('#url').value.trim();
     const itemNameInput = document.querySelector('#name').value.trim();
-    // const fileInput = document.querySelector('#file').files[0];
-    if (!typeSelect || !locationSelect || !folderNameInput || !urlInput || !itemNameInput) {
-        document.getElementById('error-message').textContent = 'Missing Field';
-        showModal();
-        return;
+    const fileInput = document.querySelector('#file').files[0];
+    // if (!typeSelect || !locationSelect || !folderNameInput || !urlInput || !itemNameInput) {
+    //     document.getElementById('error-message').textContent = 'Missing Field';
+    //     showModal();
+    //     return;
+    // }
+
+    if(typeSelect === 'URL') {
+        if (!isValidTikTokUrl(urlInput)) {
+            document.getElementById('error-message').textContent = 'Invalid TikTok URL. Please use the format: https://www.tiktok.com/@user/video/id';
+            showModal();
+            return;
+        }
+    }
+    if (typeSelect === 'URL') {
+        if (locationSelect === 'New Folder' && !folderNameInput || !urlInput || !itemNameInput) {
+            document.getElementById('error-message').textContent = 'Missing Field';
+            showModal();
+            return;
+        }
+    } else if (typeSelect === 'URL' && folderNameInput !== 'New Folder' ) {
+        if (!urlInput || !itemNameInput) {
+            document.getElementById('error-message').textContent = 'Missing Field';
+            showModal();
+            return;
+        }
+    } else if (typeSelect ==='Local Image') {
+        if (locationSelect === 'New Folder' && !folderNameInput || !itemNameInput || !fileInput) {
+            document.getElementById('error-message').textContent = 'Missing Field or Upload';
+            showModal();
+            return;
+        }
+    } else if (typeSelect ==='Local Image' && folderNameInput !== 'New Folder' ) {
+        if (!itemNameInput) {
+            document.getElementById('error-message').textContent = 'Missing Field';
+            showModal();
+            return;
+        }
     }
 
     const formData = new FormData();
@@ -57,6 +133,9 @@ const uploadFormHandler = async (event) => {
         console.error('Error during upload:', error);
     }
 };
+
+// Initialize input states on page load
+document.addEventListener('DOMContentLoaded', toggleInputStates);
 
 //Upload form selector
 const uploadForm = document.querySelector('#upload-form');

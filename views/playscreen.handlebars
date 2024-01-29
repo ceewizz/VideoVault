@@ -1,4 +1,17 @@
-<div>
+{{!-- <div>
     <h2>{{{item.itemName}}}</h2>
     <div class="media-player">{{{tiktokResponse.html}}}</div>
-</div>
+</div> --}}
+
+{{#if tiktokResponse}}
+    <h2>{{{item.itemName}}}</h2>
+    <div class="media-player">{{{tiktokResponse.html}}}</div>
+{{else}}
+    <h2>{{item.itemName}}</h2>
+    {{#if item.itemUrl}}
+        <img src="{{item.itemUrl}}" alt="{{item.itemName}}" />
+    {{else}}
+        <p>Media not available.</p>
+    {{/if}}
+{{/if}}
+
