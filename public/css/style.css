@@ -41,6 +41,11 @@ body {
     min-height: 100vh;
     overflow-y: auto;
 }
+
+main {
+    max-width: 275px;
+    padding-top: 200px;
+}
 /* Login */
 .login-container {
     min-height: 300px;
