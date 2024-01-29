@@ -1,6 +1,6 @@
 <section class="dashboard">
     <div class="greeting">
-        <h2>Good afternoon, {{user.name}}</h2>
+        <h2>Hello</h2>
     </div>
     <div class="favorites">
         <h3>Your Favorites</h3>
@@ -22,66 +22,12 @@
     <div class="categories">
         <h3>Categories</h3>
         <div class="category-list">
-            <div class="category-item">
-                <img src="path/to/category-image-1.jpg" alt="Movies">
-                <span>Movies</span>
-            </div>
-            <div class="category-item">
-                <img src="path/to/category-image-2.jpg" alt="TV Shows">
-                <span>TV Shows</span>
-            </div>
+            {{#each folders as |folder| }}
             <div class="category-item">
                 <img src="path/to/category-image-3.jpg" alt="Documentaries">
                 <span>Documentaries</span>
             </div>
-            <div class="category-item">
-                <img src="path/to/category-image-3.jpg" alt="Documentaries">
-                <span>Documentaries</span>
-            </div>
-            <div class="category-item">
-                <img src="path/to/category-image-3.jpg" alt="Documentaries">
-                <span>Documentaries</span>
-            </div>
-            <div class="category-item">
-                <img src="path/to/category-image-3.jpg" alt="Documentaries">
-                <span>Documentaries</span>
-            </div>
-            <div class="category-item">
-                <img src="path/to/category-image-3.jpg" alt="Documentaries">
-                <span>Documentaries</span>
-            </div>
-            <div class="category-item">
-                <img src="path/to/category-image-3.jpg" alt="Documentaries">
-                <span>Documentaries</span>
-            </div>
-            <div class="category-item">
-                <img src="path/to/category-image-3.jpg" alt="Documentaries">
-                <span>Documentaries</span>
-            </div>
-            <div class="category-item">
-                <img src="path/to/category-image-3.jpg" alt="Documentaries">
-                <span>Documentaries</span>
-            </div>
-            <div class="category-item">
-                <img src="path/to/category-image-3.jpg" alt="Documentaries">
-                <span>Documentaries</span>
-            </div>
-            <div class="category-item">
-                <img src="path/to/category-image-3.jpg" alt="Documentaries">
-                <span>Documentaries</span>
-            </div>
-            <div class="category-item">
-                <img src="path/to/category-image-3.jpg" alt="Documentaries">
-                <span>Documentaries</span>
-            </div>
-            <div class="category-item">
-                <img src="path/to/category-image-3.jpg" alt="Documentaries">
-                <span>Documentaries</span>
-            </div>
-            <div class="category-item">
-                <img src="path/to/category-image-3.jpg" alt="Documentaries">
-                <span>Documentaries</span>
-            </div>
+            {{/each}}
         </div>
     </div>
 </section>
