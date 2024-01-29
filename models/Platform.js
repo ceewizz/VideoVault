@@ -24,6 +24,7 @@ Platform.init(
         platform.name = platform.name.charAt(0).toUpperCase() + platform.name.slice(1);
       },
     },
-  };
+  }
+)
 
 module.exports = Platform;

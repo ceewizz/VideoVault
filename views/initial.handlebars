@@ -1,3 +1,23 @@
-<h1>This is the initial homepage if the user is not authenticated / is a new user</h1>
-<a href="/login">Login</a>
-<a href="/signup">Sign Up</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Website</title>
+  <link rel="stylesheet" href="/css/initialPage.css">
+</head>
+<body>
+  {{#if isAuthenticated}}
+    <p>Hello, {{username}}!</p>
+  {{else}}
+    <div class="img-container">
+      <img src='https://news.mit.edu/sites/default/files/styles/news_article__image_gallery/public/images/202010/LIDS-Synthetic-Data-Vault.png?itok=B2viUOJl'>
+      <div></div>
+    </div>
+    <h1>Welcome to VideoVault!</h1>
+    <p>Videovault is the ultimate app for organizing and enjoying your video content. Download now and</p>
+    <a href="/login">Log in</a>
+    <a href="/signup">Join VideoVault</a>
+  {{/if}}
+</body>
+</html>
