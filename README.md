@@ -1,6 +1,8 @@
 # VideoVault Full Stack
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/license/mit/)
-[![Github Profile](https://img.shields.io/badge/GitHub-Saduhub-blue?logo=github)](https://github.com/saduhub)
+[![Github Repo](https://img.shields.io/badge/GitHub_Project_Board-Deployed-blue?logo=github)](https://github.com/users/saduhub/projects/5)
+[![Github Project Board](https://img.shields.io/badge/GitHub-Saduhub-blue?logo=github)](https://github.com/saduhub/VideoVault)
+[![Heroku App](https://img.shields.io/badge/Heroku-Deployed-blueviolet?logo=heroku)](https://tunestack-v1-74649ac6d540.herokuapp.com/](https://video-vault-a9fdebd79a00.herokuapp.com/)
 
 
 ## Description
