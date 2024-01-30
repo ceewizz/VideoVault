@@ -38,6 +38,67 @@ const seedDatabase = async () => {
       folderId: folder.folderId,
     });
   });
+  const usertest = await User.create({
+    username: 'usertest',
+    email: 'usertest@example.com',
+    password: 'usertest',
+  });
+
+  // const carsFolder = await Folder.create({
+  //   folderName: 'Cars',
+  //   userId: usertest.userId,
+  // });
+
+  // const foodFolder = await Folder.create({
+  //   folderName: 'Food',
+  //   userId: usertest.userId,
+  // });
+
+  // // Car items
+  // await MediaItem.create({
+  //   itemName: 'GT3',
+  //   itemUrl: 'https://www.tiktok.com/@jaywahnkim/video/7259644812259757314',
+  //   itemType: 'Video',
+  //   folderId: carsFolder.folderId,
+  // });
+
+  // await MediaItem.create({
+  //   itemName: 'Hellcat',
+  //   itemUrl: 'https://www.tiktok.com/@editsbybryant._/video/7305442937482104095',
+  //   itemType: 'Video',
+  //   folderId: carsFolder.folderId,
+  // });
+
+  // await MediaItem.create({
+  //   itemName: 'Supra',
+  //   itemUrl: 'https://www.tiktok.com/@swxft.404/video/7267126919009733921',
+  //   itemType: 'Video',
+  //   folderId: carsFolder.folderId,
+  // });
+
+  // // Food items
+  // await MediaItem.create({
+  //   itemName: 'Burrito',
+  //   itemUrl: 'https://www.tiktok.com/@grubspot/video/7256905701312761131',
+  //   itemType: 'Video',
+  //   folderId: foodFolder.folderId,
+  // });
+
+  // await MediaItem.create({
+  //   itemName: 'Burger',
+  //   itemUrl: 'https://www.tiktok.com/@foodporne/video/7227937704153976090',
+  //   itemType: 'Video',
+  //   folderId: foodFolder.folderId,
+  // });
+
+  // await MediaItem.create({
+  //   itemName: 'Pizza',
+  //   itemUrl: 'https://www.tiktok.com/@rvbengarcia/video/7264957656492756257',
+  //   itemType: 'Video',
+  //   folderId: foodFolder.folderId,
+  // });
+
+  console.log('\n----- USERTEST AND ITEMS SEEDED -----\n');
   // Wait for all media items to be created (promises resolved)
   await Promise.all(mediaItemsPromises);
   console.log('\n----- MEDIA ITEMS SEEDED -----\n');
