@@ -42,9 +42,18 @@ body {
     overflow-y: auto;
 }
 
-main {
+ main {
     max-width: 275px;
-    padding-top: 200px;
+    padding-top: 50px;
+}
+
+.main-container {
+    max-width: 1200px; 
+    margin-right: auto;
+    margin-left: auto;
+    padding: 20px;
+    position: relative; 
+    padding-bottom: 40px;
 }
 /* Login */
 .login-container {
@@ -68,4 +77,11 @@ main {
     font-size: 28px;
     cursor: pointer;
     margin-left: 0.25rem;
+}
+
+@media (min-width: 768px) {
+    .main-container {
+        margin-left: calc(250px + 10%);
+        width: calc(100% - 250px - 12%); 
+    }
 }
