@@ -17,6 +17,11 @@ body {
 .content .header,
 .content h3 {
     margin-bottom: 20px;
+    text-align: center;
+}
+
+.greeting h2{
+    text-align: center;
 }
 
 .favorites {
@@ -44,6 +49,10 @@ body {
     height: 150px; 
 }
 
+.categories h3 {
+    text-align: center;
+}
+
 .favorite-item img,
 .category-item img {
     width: 100%;
@@ -62,19 +71,22 @@ body {
 
 .category-list {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); 
+    grid-template-columns: repeat(5, 1fr);
     gap: 15px;
+    justify-content: center; 
 }
 
 .category-item {
-    border: 1px solid #333;
+    border: 2px solid #555; 
     border-radius: 8px;
-    padding: 5px;
-    height: 150px; 
+    padding: 15px;
+    height: auto; 
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: #222; 
+    color: #ddd; 
 }
 
 @media (max-width: 768px) {
@@ -97,6 +109,20 @@ body {
 
 @media (min-width: 769px) {
     .content {
-        margin-left: 250px; 
+        margin-left: 250px;
+        max-width: calc(100% - 250px); 
+        display: flex;
+        justify-content: center; 
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .category-list {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+    }
+    
+    .category-item {
+        width: 180px; 
+        height: 180px;
     }
 }

@@ -43,7 +43,7 @@
 
 @media (min-width: 768px) {
     .navbar {
-        width: 300px;     
+        width: 250px;     
         height: 100vh;     
         top: 0;           
         bottom: auto;     
@@ -56,10 +56,15 @@
 
     .nav-item {
         width: 100%;
+        margin-bottom: 10px;
     }
 
     .nav-link {
         text-align: left; 
-        padding: 10px 15px; 
+        padding: 10px 15px;
+        padding-bottom: 20px;
+    }
+    .nav-link i {
+        margin-bottom: 10px;
     }
 }
